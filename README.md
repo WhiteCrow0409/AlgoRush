@@ -1,4 +1,4 @@
-# 🧾 Algorusher – API Documentation
+# 🧾 Algorush – API Documentation
 
 This documentation outlines the backend and frontend API integration for the Algorusher project—a coding practice platform built with Django (REST API) and React (frontend). It is intended to help developers understand, use, and extend the system efficiently.
 
