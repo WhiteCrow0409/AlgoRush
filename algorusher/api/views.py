@@ -84,7 +84,7 @@ def validate_google_token(request):
 class QuestionListAPIView(generics.ListAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
 class QuestionDetailAPIView(generics.RetrieveAPIView):
     queryset = Question.objects.all()

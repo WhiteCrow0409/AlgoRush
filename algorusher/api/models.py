@@ -13,7 +13,7 @@ class Question(models.Model):
         default='Easy'  # 🔧 Added default
     )
     description = models.TextField(default="")  # 🔧 Added default
-    examples = models.TextField(default="")  # 🔧 Added default
+    examples = models.JSONField(default=list)  # 🔧 Added default
     constraints = models.TextField(default="")
     tags = models.JSONField(default=list)
     hints = models.TextField(blank=True, null=True)

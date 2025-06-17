@@ -1,56 +1,60 @@
 import React from "react";
-import {Link} from "react-router-dom";
-import '../styles/Navbar.css';
-
-import { useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
+import "../styles/Navbar.css";
 import { useAuthentication } from "../auth";
 
-
 function Navbar() {
-    
-   const {isAuthorized,logout} = useAuthentication();
+  const { isAuthorized, logout } = useAuthentication();
+  const username = localStorage.getItem("username"); // You should store this at login
 
-    const handlelogout = () =>{
-        logout();
-    }
+  const handleLogout = () => {
+    logout();
+  };
 
-    return (
-        <div className="navbar">
-            
-            <ul className="navbar-menu-left">
-                <li>
-                    <Link to="/why">Why Us?</Link>
-                </li>
-                <li>
-                    <Link to="/about">About</Link>
-                </li>
-                <li>
-                    <Link to="/contact">Contact</Link>
-                </li>
-            </ul>
-            <ul className="navbar-menu-right">
-                    {isAuthorized?(
-                         <li>
-                            <Link onClick={handlelogout}to="/logout" className="button-link">Logout</Link>
-                        </li>
-                    ):(
-                        <>
-                        <li>
-                            <Link to="/login" className="button-link-login">Log In</Link>
-                        </li>
-                        <li>
-                            <Link to="/register" className="button-link">Register</Link>
-                        </li>
-                        </>
-                    )}
-                       
+  return (
+    <div className="navbar">
+      <div className="navbar-left">
+        <Link to="/" className="navbar-logo-link">
+          <h2 className="navbar-title">Algorush</h2>
+        </Link>
+        {isAuthorized && (
+          <ul className="navbar-menu-left">
+            <li>
+              <Link to="/">Dashboard</Link>
+            </li>
+          </ul>
+        )}
+      </div>
 
-                       
-                   
-            </ul>
-        </div>
-    );
+      <ul className="navbar-menu-right">
+        {isAuthorized ? (
+          <>
+            <li className="dashboard-icon">
+              {username?.[0]?.toUpperCase() || "U"}
+            </li>
+            <li>
+              <button onClick={handleLogout} className="button-link">
+                Logout
+              </button>
+            </li>
+          </>
+        ) : (
+          <>
+            <li>
+              <Link to="/login" className="button-link-login">
+                Log In
+              </Link>
+            </li>
+            <li>
+              <Link to="/register" className="button-link">
+                Register
+              </Link>
+            </li>
+          </>
+        )}
+      </ul>
+    </div>
+  );
 }
 
 export default Navbar;
