@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import ProblemDetail from './pages/ProblemDetail';  
 import { useAuthentication } from './auth';  
 import Landing from './pages/Landing';  
+import RedirectGoogleAuth from './component/GoogleRedirectHandler.jsx';  // 👈 NEW
 
 function App() {
   const { isAuthorized } = useAuthentication();
@@ -36,6 +37,7 @@ function App() {
           <Route path="/problem/:id" element={<ProtectedProblemDetail />} />
           <Route path="/login" element={<ProtectedLogin />} />
           <Route path="/register" element={<ProtectedRegister />} />
+          <Route path="/login/callback" element={<RedirectGoogleAuth />} /> {/* 👈 ADDED */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
